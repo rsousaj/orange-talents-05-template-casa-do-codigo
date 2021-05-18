@@ -10,6 +10,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zup.orangetalents.casadocodigo.autor.validations.EmailUnico;
+
 @Entity
 public class Autor {
 
@@ -20,7 +22,7 @@ public class Autor {
 	@NotBlank
 	private String nome;
 	
-	@Email @NotBlank
+	@Email @NotBlank @EmailUnico
 	private String email;
 	
 	@NotBlank @Size(max = 400)
@@ -31,7 +33,7 @@ public class Autor {
 	public Autor() {
 	}
 	
-	public Autor(@NotBlank String nome, @Email String email, @NotBlank @Size(max = 400) String descricao) {
+	public Autor(@NotBlank String nome, @Email @NotBlank @EmailUnico String email, @NotBlank @Size(max = 400) String descricao) {
 		super();
 		this.nome = nome;
 		this.email = email;
