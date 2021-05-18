@@ -1,4 +1,4 @@
-package br.com.zup.orangetalents.casadocodigo.autor.exception;
+package br.com.zup.orangetalents.casadocodigo.comum.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +14,21 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class ErroDeFormularioHandler {
+public class ErroDeRequisicaoHandler {
 
 	@Autowired
 	private MessageSource messageSource;
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-	public List<ErroDeFormularioDTO> argumentoInvalido(MethodArgumentNotValidException ex) {
-		List<ErroDeFormularioDTO> erros =  new ArrayList<ErroDeFormularioDTO>();
+	public List<ErroDeRequisicaoDTO> argumentoInvalido(MethodArgumentNotValidException ex) {
+		List<ErroDeRequisicaoDTO> erros =  new ArrayList<ErroDeRequisicaoDTO>();
 		
 		ex.getFieldErrors().forEach(fieldError -> {
 			String campo = fieldError.getField();			
 			String mensagem = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
 			
-			erros.add(new ErroDeFormularioDTO(campo, mensagem));
+			erros.add(new ErroDeRequisicaoDTO(campo, mensagem));
 		});
 		
 		return erros;

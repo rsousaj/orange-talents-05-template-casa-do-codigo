@@ -1,24 +1,39 @@
 package br.com.zup.orangetalents.casadocodigo.autor.validations;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
+import br.com.zup.orangetalents.casadocodigo.autor.model.AutorRequest;
 import br.com.zup.orangetalents.casadocodigo.autor.repository.AutorRepository;
 
-public class EmailDuplicadoValidador implements ConstraintValidator<EmailUnico, String> {
+@Component
+public class EmailDuplicadoValidador implements Validator {
 
 	private final AutorRepository autorRepository;
 	
 	public EmailDuplicadoValidador(AutorRepository autorRepository) {
 		this.autorRepository = autorRepository;
 	}
-	
+
 	@Override
-	public boolean isValid(String email, ConstraintValidatorContext context) {
-		if (autorRepository.findByEmail(email).isPresent()) {
-			return false;
-		}
-		return true;
+	public boolean supports(Class<?> clazz) {
+		return AutorRequest.class.isAssignableFrom(clazz);
 	}
+
+	@Override
+	public void validate(Object target, Errors errors) {
+		if (errors.hasErrors()) {
+			return;
+		}
+		
+		AutorRequest autor = (AutorRequest) target;
+		
+		
+		if (autorRepository.findByEmail(autor.getEmail()).isPresent()) {
+			errors.rejectValue("email", null, "Já existe autor cadastrado com esse mesmo e-mail");
+		}
+	}
+	
 
 }

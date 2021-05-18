@@ -1,11 +1,11 @@
-package br.com.zup.orangetalents.casadocodigo.autor.exception;
+package br.com.zup.orangetalents.casadocodigo.comum.exceptions;
 
-public class ErroDeFormularioDTO {
+public class ErroDeRequisicaoDTO {
 
 	private String campo;
 	private String mensagem;
 	
-	public ErroDeFormularioDTO(String campo, String mensagem) {
+	public ErroDeRequisicaoDTO(String campo, String mensagem) {
 		this.campo = campo;
 		this.mensagem = mensagem;
 	}
