@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.orangetalents.casadocodigo.autor.model.AutorForm;
+import br.com.zup.orangetalents.casadocodigo.autor.model.AutorRequest;
 import br.com.zup.orangetalents.casadocodigo.autor.repository.AutorRepository;
 
 @RestController
@@ -22,8 +22,8 @@ public class AutorController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<AutorForm> cadastrar(@RequestBody @Valid AutorForm autorForm) {
-		autorRepository.save(autorForm.toModel());
+	public ResponseEntity<AutorRequest> cadastrar(@RequestBody @Valid AutorRequest autorRequest) {
+		autorRepository.save(autorRequest.toModel());
 		return ResponseEntity.ok().build();
 	}
 	
