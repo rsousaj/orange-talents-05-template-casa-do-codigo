@@ -4,12 +4,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zup.orangetalents.casadocodigo.comum.validations.UniqueValue;
+
 public class AutorRequest {
 	
 	@NotBlank
 	private String nome;
 	
-	@Email @NotBlank
+	@Email @NotBlank @UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	
 	@NotBlank @Size(max = 400)

@@ -11,23 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zup.orangetalents.casadocodigo.categoria.model.CategoriaRequest;
 import br.com.zup.orangetalents.casadocodigo.categoria.repository.CategoriaRepository;
-import br.com.zup.orangetalents.casadocodigo.categoria.validations.NomeDuplicadoCategoriaValidator;
 
 @RestController
 public class NovaCategoriaController {
 	
 	private final CategoriaRepository categoriaRepository;
-	private final NomeDuplicadoCategoriaValidator nomeDuplicadoCategoriaValidator;
-	
-	@InitBinder
-	public void init(WebDataBinder binder) {
-		binder.addValidators(nomeDuplicadoCategoriaValidator);
-	}
-	
-	public NovaCategoriaController(CategoriaRepository categoriaRepository,
-			NomeDuplicadoCategoriaValidator nomeDuplicadoCategoriaValidator) {
+//	private final NomeDuplicadoCategoriaValidator nomeDuplicadoCategoriaValidator;
+//	
+//	@InitBinder
+//	public void init(WebDataBinder binder) {
+//		binder.addValidators(nomeDuplicadoCategoriaValidator);
+//	}
+//	
+	public NovaCategoriaController(CategoriaRepository categoriaRepository) {
 		this.categoriaRepository = categoriaRepository;
-		this.nomeDuplicadoCategoriaValidator = nomeDuplicadoCategoriaValidator;
+//		this.nomeDuplicadoCategoriaValidator = nomeDuplicadoCategoriaValidator;
 	}
 
 	@PostMapping("/categoria")
