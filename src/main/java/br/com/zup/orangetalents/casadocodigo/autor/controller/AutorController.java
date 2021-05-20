@@ -25,6 +25,7 @@ public class AutorController {
 	
 	@PostMapping
 	public ResponseEntity<AutorRequest> cadastrar(@RequestBody @Valid AutorRequest autorRequest) {
+		
 		autorRepository.save(autorRequest.toModel());
 		return ResponseEntity.ok().build();
 	}

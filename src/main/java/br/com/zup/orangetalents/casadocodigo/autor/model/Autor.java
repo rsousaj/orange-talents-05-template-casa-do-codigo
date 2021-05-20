@@ -31,18 +31,24 @@ public class Autor {
 	@NotBlank @Size(max = 400)
 	private String descricao;
 	
-	@OneToMany(mappedBy = "autor")
-	private Set<Livro> livros = new HashSet<Livro>();
+//	@OneToMany(mappedBy = "autor")
+//	private Set<Livro> livros = new HashSet<Livro>();
 	
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 
 	public Autor() {
 	}
 	
-	public Autor(@NotBlank String nome, @Email @NotBlank String email, @NotBlank @Size(max = 400) String descricao) {
+	public Autor(@NotBlank String nome, 
+			@Email @NotBlank String email, 
+			@NotBlank @Size(max = 400) String descricao) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.descricao = descricao;
+	}
+	
+	public Set<Livro> getLivros() {
+		return this.getLivros();
 	}
 }
