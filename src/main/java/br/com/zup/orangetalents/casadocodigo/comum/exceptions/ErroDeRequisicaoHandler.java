@@ -26,6 +26,10 @@ public class ErroDeRequisicaoHandler {
 	public List<ErroDeRequisicaoDTO> argumentoInvalido(MethodArgumentNotValidException ex) {
 		List<ErroDeRequisicaoDTO> erros =  new ArrayList<ErroDeRequisicaoDTO>();
 		
+		ex.getGlobalErrors().forEach(globalError -> {
+			erros.add(new ErroDeRequisicaoDTO(globalError.getDefaultMessage()));
+		});
+		
 		ex.getFieldErrors().forEach(fieldError -> {
 			String campo = fieldError.getField();			
 			String mensagem = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
