@@ -16,26 +16,20 @@ import br.com.zup.orangetalents.casadocodigo.autor.model.Autor;
 import br.com.zup.orangetalents.casadocodigo.autor.repository.AutorRepository;
 import br.com.zup.orangetalents.casadocodigo.categoria.model.Categoria;
 import br.com.zup.orangetalents.casadocodigo.categoria.repository.CategoriaRepository;
+import br.com.zup.orangetalents.casadocodigo.livro.model.Livro;
 import br.com.zup.orangetalents.casadocodigo.livro.model.LivroRequest;
 import br.com.zup.orangetalents.casadocodigo.livro.repository.LivroRepository;
 
 @RestController
 @RequestMapping
 public class AdicionaLivroController {
-
-	private final LivroRepository livroRepository;
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	
-	public AdicionaLivroController(LivroRepository livroRepository) {
-		this.livroRepository = livroRepository;
-	}
-	
 	@PostMapping("/livros")
 	public ResponseEntity<?> cadastra(@RequestBody @Valid LivroRequest livro) {
-		livroRepository.save(livro.toModel(entityManager));
+		entityManager.persist(livro.toModel(entityManager));
 		return ResponseEntity.ok().build();
 	}
 }
