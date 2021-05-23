@@ -13,7 +13,7 @@ import br.com.zup.orangetalents.casadocodigo.categoria.model.CategoriaRequest;
 import br.com.zup.orangetalents.casadocodigo.categoria.repository.CategoriaRepository;
 
 @RestController
-public class NovaCategoriaController {
+public class CadastraCategoriaController {
 	
 	private final CategoriaRepository categoriaRepository;
 //	private final NomeDuplicadoCategoriaValidator nomeDuplicadoCategoriaValidator;
@@ -23,7 +23,7 @@ public class NovaCategoriaController {
 //		binder.addValidators(nomeDuplicadoCategoriaValidator);
 //	}
 //	
-	public NovaCategoriaController(CategoriaRepository categoriaRepository) {
+	public CadastraCategoriaController(CategoriaRepository categoriaRepository) {
 		this.categoriaRepository = categoriaRepository;
 //		this.nomeDuplicadoCategoriaValidator = nomeDuplicadoCategoriaValidator;
 	}

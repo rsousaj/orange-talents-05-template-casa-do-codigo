@@ -22,7 +22,7 @@ import br.com.zup.orangetalents.casadocodigo.livro.repository.LivroRepository;
 
 @RestController
 @RequestMapping
-public class AdicionaLivroController {
+public class CadastraLivroController {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
