@@ -38,8 +38,6 @@ public class CadastraClienteController {
 		Cliente novoCliente = clienteRequest.toModel(entityManager);
 		entityManager.persist(novoCliente);
 		
-		System.out.println("ID DO CLIENTE: " + novoCliente.getId());
-		
 		return ResponseEntity.ok(ClienteCadastradoDTO.toDTO(novoCliente));
 	}
 }
