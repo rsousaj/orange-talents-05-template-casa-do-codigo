@@ -15,7 +15,7 @@ public class Estado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
+	@NotNull @NotBlank
 	private String nome;
 	
 	@NotNull
