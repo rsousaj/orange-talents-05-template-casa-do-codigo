@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -29,47 +30,31 @@ public class Livro {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@ISBN
 	private String isbn;
+	private @NotBlank String titulo;
+	private @NotBlank @Size(max = 500) String resumo;
+	private @Lob String sumario;
+	private @NotNull @DecimalMin(value = "20") BigDecimal preco;
+	private @NotNull @Min(value = 100) Integer numeroPaginas;
+	private @Future LocalDate dataPublicacao;
 	
-	@NotBlank
-	private String titulo;
-	
-	@NotBlank
-	@Size(max = 500)
-	private String resumo;
-	
-	@Lob
-	private String sumario;
-	
-	@NotNull
-	@Min(value = 20)
-	private BigDecimal preco;
-	
-	@NotNull
-	@Min(value = 100)
-	private Integer numeroPaginas;
-	
-	@Future
-	private LocalDate dataPublicacao;
-	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Categoria categoria;
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Autor autor;
 	
 	@Deprecated
 	public Livro() {
 	}
 
-	public Livro(@ISBN String isbn, @NotBlank String titulo, @NotBlank @Size(max = 500) String resumo,
+	public Livro(String isbn, @NotBlank String titulo, @NotBlank @Size(max = 500) String resumo,
 			@Min(20) BigDecimal preco, @Min(100) Integer numeroPaginas, @Future LocalDate dataPublicacao,
 			Categoria categoria, Autor autor) {
 		this(isbn, titulo, resumo, null, preco, numeroPaginas, dataPublicacao, categoria, autor);
 	}
 
-	public Livro(@ISBN String isbn, @NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, String sumario,
+	public Livro(String isbn, @NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, String sumario,
 			@Min(20) BigDecimal preco, @Min(100) Integer numeroPaginas, @Future LocalDate dataPublicacao,
 			Categoria categoria, Autor autor) {
 		this.isbn = isbn;
@@ -117,6 +102,31 @@ public class Livro {
 
 	public Autor getAutor() {
 		return autor;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Livro other = (Livro) obj;
+		if (isbn == null) {
+			if (other.isbn != null)
+				return false;
+		} else if (!isbn.equals(other.isbn))
+			return false;
+		return true;
 	}
 
 }

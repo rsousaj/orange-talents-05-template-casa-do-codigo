@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.zup.orangetalents.casadocodigo.comum.validations.CPForCNPJ;
-import br.com.zup.orangetalents.casadocodigo.comum.validations.ExistsEntity;
+import br.com.zup.orangetalents.casadocodigo.comum.validations.EntidadeExistente;
 import br.com.zup.orangetalents.casadocodigo.localidade.model.Estado;
 import br.com.zup.orangetalents.casadocodigo.localidade.model.Pais;
 
@@ -20,7 +20,7 @@ public class ClienteRequest {
 	private @NotBlank String complemento;
 	private @NotBlank String cidade;
 	
-	@ExistsEntity(referenceEntity = Pais.class, fieldName = "id")
+	@EntidadeExistente(referenceEntity = Pais.class, fieldName = "id")
 	private @NotNull Integer paisId;
 	private Long estadoId;
 	private @NotBlank String telefone;
@@ -54,6 +54,6 @@ public class ClienteRequest {
 		Pais pais = entityManager.find(Pais.class, paisId);
 		Estado estado = estadoId != null ? entityManager.find(Estado.class, estadoId) : null;
 		
-		return new Cliente(email, nome, sobrenome, documento, endereco, complemento, cidade, pais, estado, telefone, cep);
+		return new Cliente(email, nome, sobrenome, documento, endereco, complemento, cidade, telefone, cep, pais, estado);
 	}
 }

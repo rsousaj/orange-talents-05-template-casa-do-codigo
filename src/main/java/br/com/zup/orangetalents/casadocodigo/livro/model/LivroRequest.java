@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import br.com.zup.orangetalents.casadocodigo.autor.model.Autor;
 import br.com.zup.orangetalents.casadocodigo.categoria.model.Categoria;
-import br.com.zup.orangetalents.casadocodigo.comum.validations.ExistsEntity;
+import br.com.zup.orangetalents.casadocodigo.comum.validations.EntidadeExistente;
 import br.com.zup.orangetalents.casadocodigo.comum.validations.UniqueValue;
 
 public class LivroRequest {
@@ -53,11 +53,11 @@ public class LivroRequest {
 	private LocalDate dataPublicacao;
 
 	@NotNull
-	@ExistsEntity(referenceEntity = Categoria.class, fieldName = "id")
+	@EntidadeExistente(referenceEntity = Categoria.class, fieldName = "id")
 	private Long categoriaId;
 
 	@NotNull
-	@ExistsEntity(referenceEntity = Autor.class)
+	@EntidadeExistente(referenceEntity = Autor.class)
 	private Long autorId;
 
 	public LivroRequest(@ISBN String isbn, @NotBlank String titulo, @NotBlank @Size(max = 500) String resumo,

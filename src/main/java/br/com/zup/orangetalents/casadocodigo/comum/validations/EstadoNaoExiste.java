@@ -10,8 +10,8 @@ import javax.validation.Constraint;
 
 @Target(TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = NotEstadoExistenteValidator.class)
-public @interface NotEstadoExistente {
+@Constraint(validatedBy = EstadoNaoExisteValidator.class)
+public @interface EstadoNaoExiste {
 	
 	String message() default "Já existe Estado cadastrado com esse nome para esse País.";
 	

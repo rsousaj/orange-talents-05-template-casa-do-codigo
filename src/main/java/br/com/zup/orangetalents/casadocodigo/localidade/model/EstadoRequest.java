@@ -6,17 +6,17 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.util.Assert;
 
-import br.com.zup.orangetalents.casadocodigo.comum.validations.ExistsEntity;
-import br.com.zup.orangetalents.casadocodigo.comum.validations.NotEstadoExistente;
+import br.com.zup.orangetalents.casadocodigo.comum.validations.EntidadeExistente;
+import br.com.zup.orangetalents.casadocodigo.comum.validations.EstadoNaoExiste;
 
-@NotEstadoExistente
+@EstadoNaoExiste
 public class EstadoRequest {
 
 	@NotBlank
 	private String nome;
 	
 	@NotNull
-	@ExistsEntity(referenceEntity = Pais.class, fieldName = "id")
+	@EntidadeExistente(referenceEntity = Pais.class, fieldName = "id")
 	private Integer paisId;
 
 	public String getNome() {

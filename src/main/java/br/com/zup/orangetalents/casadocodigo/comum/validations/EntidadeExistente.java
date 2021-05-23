@@ -10,8 +10,8 @@ import javax.validation.Payload;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-@Constraint(validatedBy = ExistsEntityValidator.class)
-public @interface ExistsEntity {
+@Constraint(validatedBy = EntidadeExistenteValidator.class)
+public @interface EntidadeExistente {
 
 	String message() default "{javax.validation.constraints.ExistsEntity.message}";
 	

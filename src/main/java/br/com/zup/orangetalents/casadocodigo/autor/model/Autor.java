@@ -15,26 +15,19 @@ import br.com.zup.orangetalents.casadocodigo.comum.validations.UniqueValue;
 import br.com.zup.orangetalents.casadocodigo.livro.model.Livro;
 
 @Entity
-public class Autor {
+public class Autor extends Object {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
-	private String nome;
-	
-	@Email @NotBlank
-	private String email;
-	
-	@NotBlank @Size(max = 400)
-	private String descricao;
-	
-//	@OneToMany(mappedBy = "autor")
-//	private Set<Livro> livros = new HashSet<Livro>();
+	private @NotBlank String nome;
+	private @Email @NotBlank String email;
+	private @NotBlank @Size(max = 400) String descricao;
 	
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 
+	@Deprecated
 	public Autor() {
 	}
 	
@@ -46,16 +39,56 @@ public class Autor {
 		this.email = email;
 		this.descricao = descricao;
 	}
-	
-	public Set<Livro> getLivros() {
-		return this.getLivros();
-	}
 
+	public Long getId() {
+		return this.id;
+	}
+	
 	public String getNome() {
-		return nome;
+		return this.nome;
+	}
+	
+	public String getEmail() {
+		return this.email;
 	}
 
 	public String getDescricao() {
-		return descricao;
+		return this.descricao;
 	}
+	
+	public LocalDateTime getDataCriacao() {
+		return this.dataCriacao;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Autor other = (Autor) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
 }

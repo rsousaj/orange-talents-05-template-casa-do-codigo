@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 
 import br.com.zup.orangetalents.casadocodigo.localidade.model.EstadoRequest;
 
-public class NotEstadoExistenteValidator implements ConstraintValidator<NotEstadoExistente, EstadoRequest> {
+public class EstadoNaoExisteValidator implements ConstraintValidator<EstadoNaoExiste, EstadoRequest> {
 
 	@PersistenceContext
 	private EntityManager entityManager;

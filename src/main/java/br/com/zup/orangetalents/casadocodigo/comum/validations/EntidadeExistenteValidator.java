@@ -6,7 +6,7 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ExistsEntityValidator implements ConstraintValidator<ExistsEntity, Object> {
+public class EntidadeExistenteValidator implements ConstraintValidator<EntidadeExistente, Object> {
 	
 	private String fieldName;
 	private Class<?> klass;
@@ -15,7 +15,7 @@ public class ExistsEntityValidator implements ConstraintValidator<ExistsEntity, 
 	private EntityManager entityManager;
 	
 	@Override
-	public void initialize(ExistsEntity anotacao) {
+	public void initialize(EntidadeExistente anotacao) {
 		this.fieldName = anotacao.fieldName();
 		this.klass = anotacao.referenceEntity();
 	}
