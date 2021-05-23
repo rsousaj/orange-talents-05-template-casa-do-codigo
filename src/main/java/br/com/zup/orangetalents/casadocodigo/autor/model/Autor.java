@@ -25,7 +25,6 @@ public class Autor {
 	private String nome;
 	
 	@Email @NotBlank
-	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	
 	@NotBlank @Size(max = 400)
