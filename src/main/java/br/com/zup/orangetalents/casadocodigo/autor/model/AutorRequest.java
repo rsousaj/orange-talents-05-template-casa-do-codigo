@@ -11,7 +11,8 @@ public class AutorRequest {
 	@NotBlank
 	private String nome;
 	
-	@Email @NotBlank @UniqueValue(domainClass = Autor.class, fieldName = "email")
+	@Email @NotBlank
+//	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	
 	@NotBlank @Size(max = 400)

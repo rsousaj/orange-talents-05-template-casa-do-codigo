@@ -1,18 +1,17 @@
 package br.com.zup.orangetalents.casadocodigo.autor.model;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zup.orangetalents.casadocodigo.comum.validations.UniqueValue;
 import br.com.zup.orangetalents.casadocodigo.livro.model.Livro;
 
 @Entity
@@ -26,6 +25,7 @@ public class Autor {
 	private String nome;
 	
 	@Email @NotBlank
+	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	
 	@NotBlank @Size(max = 400)
